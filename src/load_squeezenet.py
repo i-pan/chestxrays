@@ -1,0 +1,5 @@
+model = pretrainedmodels.__dict__['squeezenet1_1'](num_classes=1000, pretrained='imagenet') 
+model.dropout = nn.Dropout(args.dropout_p) 
+model.last_conv = nn.Conv2D(512, args.nb_classes, kernel_size=1, stride=1)
+model.avgpool = nn.AdaptiveAvgPool2d(1)
+model.train().cuda()
